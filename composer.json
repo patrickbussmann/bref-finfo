@@ -1,0 +1,12 @@
+{
+    "name": "patrickbussmann/bref-finfo",
+    "require": {
+        "bref/bref": "^0.5.16"
+    },
+    "authors": [
+        {
+            "name": "Patrick Bußmann",
+            "email": "patrick.bussmann@bussmann-it.de"
+        }
+    ]
+}

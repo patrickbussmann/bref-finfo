@@ -1,20 +1,24 @@
-<?php declare(strict_types=1);
+<?php
 
-require __DIR__ . '/vendor/autoload.php';
+if (false === $finfo = new \finfo(FILEINFO_MIME_TYPE)) {
+	echo 'finfo not found';
+	exit;
+}
 
-return function ($event) {
-	if (false === $finfo = new \finfo(FILEINFO_MIME_TYPE)) {
-		return 'finfo not found';
-	}
+if(count($_FILES) > 0)
+{
+    $mime = $finfo->file($_FILES['userfile']['tmp_name']);
+    unlink($_FILES['userfile']['tmp_name']);
+    echo 'Detected mime: ' . $mime;
+    exit;
+}
 
-
-	if (false === $tmpFile = tempnam(sys_get_temp_dir(), 'example')) {
-		throw new \RuntimeException(sprintf('Temp file can not be created in "%s".', sys_get_temp_dir()));
-	}
-
-	file_put_contents($tmpFile, file_get_contents(__DIR__ . '/example.png'));
-
-	$mime = $finfo->file($tmpFile);
-	unlink($tmpFile);
-	return $mime;
-};
+?><html>
+<body>
+<form enctype="multipart/form-data" action="index.php" method="POST">
+    <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
+	File upload (select example.png): <input name="userfile" type="file" />
+    <input type="submit" value="Send File" />
+</form>
+</body>
+</html>

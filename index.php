@@ -10,6 +10,7 @@ if(count($_FILES) > 0)
     $mime = $finfo->file($_FILES['userfile']['tmp_name']);
     unlink($_FILES['userfile']['tmp_name']);
     echo 'Detected mime: ' . $mime;
+    var_dump($_FILES['userfile']);
     exit;
 }
 

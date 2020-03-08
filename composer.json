@@ -1,7 +1,8 @@
 {
     "name": "patrickbussmann/bref-finfo",
     "require": {
-        "bref/bref": "^0.5.16"
+        "bref/bref": "^0.5.16",
+        "ext-fileinfo": "*"
     },
     "authors": [
         {
